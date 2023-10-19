@@ -1,7 +1,7 @@
 # Agrix 🌾
-```diff
+
 ## Sobre ##
-```
+
 Agrix é um um sistema que ajuda na gestão e monitoramento de fazendas com o intuito de melhorar a eficiência no cultivo de plantações
 <details>
 <summary>🗄️ Banco de dados</summary><br>
@@ -9,9 +9,9 @@ Agrix é um um sistema que ajuda na gestão e monitoramento de fazendas com o in
 ![Modelo de tabelas](images/agrix-tabelas-fase-b.png)
 </details>
 
-```diff
+
 ## Habilidades trabalhadas ##
-```
+
 - Conhecimento do ecossistema Spring para criar rotas da API;
 - injeção de dependência para conectar as camadas de controle, serviço e persistência;
 - Spring Data JPA para implementar entidades e repositórios para a persistência em banco de dados, bem como implementar buscas customizadas;
@@ -22,36 +22,36 @@ Agrix é um um sistema que ajuda na gestão e monitoramento de fazendas com o in
 - Spring Security para adicionar autenticação ao projeto;
 - Garanti que diferentes rotas atenda a regras específicas de autorização.
   
-```diff
+
 ## Rotas ##
-```
-```diff
+
+
 ! Para conseguir acessar as rotas é necessário cria um usuário através da rota persons 
 ! e logar através da rota auth/login para receber o Token.
-```
+
 POST `/persons`:
 <details>
   <summary>🔍 Formato/exemplo de requisição e resposta</summary><br />
 
 Exemplo de requisição na rota POST `/persons`:
 
-```json
+json
 {
   "username": "zerocool",
   "password": "senhasecreta",
   "role": "ADMIN"
 }
-```
+
 
 Exemplo de resposta:
 
-```json
+json
 {
   "id": 1,
   "username": "zerocool",
   "role": "ADMIN"
 }
-```
+
 
 </details>
 
@@ -61,20 +61,20 @@ POST `/auth/login`:
 
 Exemplo de requisição na rota POST `/auth/login` (suppondo que os dados estejam corretos):
 
-```json
+json
 {
   "username": "zerocool",
   "password": "senhasecreta"
 }
-```
+
 
 Exemplo de resposta:
 
-```json
+json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZ3JpeCIsInN1YiI6Im1ycm9ib3QiLCJleHAiOjE2ODk5ODY2NTN9.lyha4rMcMhFd_ij-farGCXuJy-1Tun1IpJd5Ot6z_5w"
 }
-```
+
 
 </details>
 
@@ -83,34 +83,34 @@ POST `/farms`:
   <summary>🔍 Formato/exemplo de requisição e resposta</summary><br />
 
 Exemplo de requisição:
-```json
+json
 {
   "name": "Fazendinha",
   "size": 5
 }
-```
+
 
 Exemplo de resposta:
 
-```json
+json
 {
   "id": 1,
   "name": "Fazendinha",
   "size": 5
 }
-```
+
 </details>
 
 GET `/farms`:
-```diff
+
 ! Acesso liberado apenas para usuários de role - USER, ADMIN OU MANAGER.
-```
+
 <details>
   <summary>🔍 Formato/exemplo de resposta</summary><br />
 
 Exemplo de resposta:
 
-```json
+json
 [
   {
     "id": 1,
@@ -123,7 +123,7 @@ Exemplo de resposta:
     "size": 2.5
   }
 ]
-```
+
 
 </details>
 
@@ -133,13 +133,13 @@ GET `/farms/{id}`:
 
 Exemplo de resposta para a rota `/farms/3` (supondo que exista uma fazenda com `id = 3`):
 
-```json
+json
 {
   "id": 3,
   "name": "My Cabbages!",
   "size": 3.49
 }
-```
+
 
 </details>
 
@@ -149,18 +149,18 @@ POST `/farms/{farmId}/crops`:
 
 Exemplo de requisição na rota `/farms/1/crops` (supondo que exista uma fazenda com `id = 1`):
 
-```json
+json
 {
   "name": "Couve-flor",
   "plantedArea": 5.43,
   "plantedDate": "2022-12-05",
   "harvestDate": "2023-06-08"
 }
-```
+
 
 Exemplo de resposta:
 
-```json
+json
 {
   "id": 1,
   "name": "Couve-flor",
@@ -169,7 +169,7 @@ Exemplo de resposta:
   "harvestDate": "2023-06-08",
   "farmId": 1
 }
-```
+
 
 Note que o `id` da resposta se refere à plantação, e que o da fazenda está em `farmId`.
 
@@ -181,7 +181,7 @@ GET `/farms/{farmId}/crops`:
 
 Exemplo de resposta para a rota `/farms/1/crops` (supondo que exista uma fazenda com `id = 1`):
 
-```json
+json
 [
   {
     "id": 1,
@@ -200,18 +200,18 @@ Exemplo de resposta para a rota `/farms/1/crops` (supondo que exista uma fazenda
     "farmId": 1
   }
 ]
-```
+
 
 </details>
 
 GET `/crops`:
-```diff
+
 ! Acesso liberado apenas para usuários de role - ADMIN OU MANAGER.
-```
+
 <details>
   <summary>🔍 Formato/exemplo de resposta</summary><br />
 
-```json
+json
 [
   {
     "id": 1,
@@ -230,7 +230,7 @@ GET `/crops`:
     "farmId": 1
   }
 ]
-```
+
 
 </details>
 
@@ -240,7 +240,7 @@ GET `/crops/{id}`:
 
 Exemplo de resposta para a rota `/crops/3` (supondo que exista uma plantação com `id = 3`:
 
-```json
+json
 {
   "id": 3,
   "name": "Tomate",
@@ -249,7 +249,7 @@ Exemplo de resposta para a rota `/crops/3` (supondo que exista uma plantação c
   "harvestDate": "2024-01-10",
   "farmId": 2
 }
-```
+
 
 </details>
 
@@ -262,7 +262,7 @@ GET `/crops/search`:
 
 Exemplo de resposta para a rota `/crops/search?start=2023-01-07&end=2024-01-10`:
 
-```json
+json
 [
   {
     "id": 1,
@@ -281,7 +281,7 @@ Exemplo de resposta para a rota `/crops/search?start=2023-01-07&end=2024-01-10`:
     "farmId": 2
   }
 ]
-```
+
 
 </details>
 
@@ -291,35 +291,35 @@ POST `/fertilizers`:
 
 Exemplo de requisição:
 
-```json
+json
 {
   "name": "Compostagem",
   "brand": "Feita em casa",
   "composition": "Restos de alimentos"
 }
-```
+
 
 Exemplo de resposta:
 
-```json
+json
 {
   "id": 1,
   "name": "Compostagem",
   "brand": "Feita em casa",
   "composition": "Restos de alimentos"
 }
-```
+
 
 </details>
 
 GET `/fertilizers`:
-```diff
+
 ! Acesso liberado apenas para usuários de role ADMIN.
-```
+
 <details>
   <summary>🔍 Formato/exemplo de resposta</summary><br />
 
-```json
+json
 [
   {
     "id": 1,
@@ -340,7 +340,7 @@ GET `/fertilizers`:
     "composition": "Esterco"
   }
 ]
-```
+
 </details>
 
 GET `/fertilizers/{id}`:
@@ -349,14 +349,14 @@ GET `/fertilizers/{id}`:
 
 Exemplo de resposta da rota `/fertilizers/3` (supondo que exista um fertilizante com `id = 3`):
 
-```json
+json
 {
   "id": 3,
   "name": "Adubo",
   "brand": "Feito pelas vaquinhas",
   "composition": "Esterco"
 }
-```
+
 
 </details>
 
@@ -367,9 +367,9 @@ POST `/crops/{cropId}/fertilizers/{fertilizerId}`:
 
 Exemplo de resposta para a rota `/crops/1/fertilizers/2` (supondo que exista uma plantação com `id = 1` e um fertilizante com `id = 2`):
 
-```text
+text
 Fertilizante e plantação associados com sucesso!
-```
+
 
 </details>
 
@@ -379,7 +379,7 @@ GET `/crops/{cropId}/fertilizers`:
 Rota para listar os fertilizante associados a uma plantação.
 Exemplo de resposta para a rota `/crops/2/fertilizers` (supondo que exista uma plantação com `id = 2`):
 
-```json
+json
 [
   {
     "id": 2,
@@ -394,18 +394,17 @@ Exemplo de resposta para a rota `/crops/2/fertilizers` (supondo que exista uma p
     "composition": "Esterco"
   }
 ]
-```
+
 
 </details>
 
-```diff
+
 ## Principais tecnologias ##
-```
-```diff
+
+
 + Java;
 + JUnit;
 + Docker;
 + Mysql;
 + JWT;
 + Spring
-```
